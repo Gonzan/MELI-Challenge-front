@@ -1,0 +1,12 @@
+$font-color: #333;
+
+.App {
+  background-color: #eeeeee;
+  min-height: 100vh;
+  color: $font-color;
+  a{
+    text-decoration: none;
+    color: $font-color;
+  }
+}
+
