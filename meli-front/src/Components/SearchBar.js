@@ -4,27 +4,24 @@ import Logo from '../assets/Logo_ML.png'
 import icon_search from '../assets/ic_Search.png'
 import './SearchBar.scss'
 
-const SearchBar = ({state,update}) =>{  
+const SearchBar = () =>{  
 
   const [data, setData] = React.useState({
     search:''
-  })
-
-
-  let history = useHistory()
+  });
+  let history = useHistory();
+  
   
   const redirect = (e) => {    
     e.preventDefault()
     setData({
       search: e.target.search.value
-    })
-    console.log(e.target.search.value);
-    
+    });
     
     history.push({
       pathname: '/items',
       search: `?search=${e.target.search.value}`
-    })
+    });
   
   }   
   return (
