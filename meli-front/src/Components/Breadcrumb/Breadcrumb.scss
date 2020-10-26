@@ -1,0 +1,31 @@
+@import '../../styles/common.scss';
+
+.breadcrumb {
+    display: flex;
+    flex-direction: row;
+    margin: 0 0 16px;
+    font-size: 12px;
+}
+
+.breadcrumb-link {
+    color: $gray;
+}
+
+.breadcrumb-item::after {
+    content: '>';
+    margin: 0 4px;
+}
+
+.breadcrumb-item:last-child {
+    font-weight: bold;
+
+    &::after {
+        content: '';
+    }
+}
+
+@media (min-width: 1024px) {
+    .breadcrumb {
+        font-size: 14px;
+    }
+}
