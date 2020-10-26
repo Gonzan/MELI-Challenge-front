@@ -1,29 +1,26 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import Icon_Shipping from '../../assets/ic_shipping.png'
-import './Product.scss'
-const Product = ({id, title, address,picture})=> (
-    <Link to={`/details/${id}`}>
-        <li className="product-container">
-            <div className="product-container__controll">
-                <figure className="product-container__poster">
-                    <img src={picture} alt="poduct" />
-                </figure>
-                <div className="product-container__detail">
-                    <div className="detail-price">
-                        <div className="detail-price__controll">
-                            <span>$</span><span>1111</span>
-                            <span><img src={Icon_Shipping} alt="shipping-icon"/></span>
-                        </div>
-                        <span className="detail-price__location">{address?.state_name}</span>
-                    </div>
-                    <div className="detail__title">
-                        <h2>{title}</h2>
-                    </div>
+import React from 'react';
+import { Link } from 'react-router-dom';
+import './Product.scss';
+
+const Product = ({ id, price, title, picture, condition }) => (
+    <li className="product">
+        <Link to={`/details/${id}`} className="product-link">
+            <figure className="product-container">
+                <img src={picture} alt="product" className="product-image" />
+            </figure>
+
+            <div className="product-details">
+                <div className="product-price">
+                    <span className="product-price-currency">$</span>
+                    <span>{price.amount}</span>
+                    <i className="product-icon"></i>
+                    <span className="product-condition">{condition}</span>
                 </div>
+
+                <h2 className="product-title">{title}</h2>
             </div>
-        </li>
-    </Link>
+        </Link>
+    </li>
 )
 
-export default Product
+export default Product;
