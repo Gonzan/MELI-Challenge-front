@@ -3,6 +3,7 @@ import {useLocation} from 'react-router-dom';
 import Product from '../../Components/Product/Product'; 
 import Breadcrumb from '../../Components/Breadcrumb/Breadcrumb';
 import Container from '../../Components/Container/Container';
+import Loader from '../../Components/Loader/Loader';
 import './SearchResults.scss';
 
 const SearchResults = () => {
@@ -10,7 +11,8 @@ const SearchResults = () => {
     const query = () => new URLSearchParams(location.search);
     const search = query();
 
-    const [products, setProducts] = useState([]); 
+    const [products, setProducts] = useState([]);
+    const [fetching, setFetching] = useState(true);
     const [categories, setCategories] = useState(false); 
       
     const getProducts = () => {
@@ -22,6 +24,7 @@ const SearchResults = () => {
             .then(data => {
                 setProducts(data.items);
                 setCategories(data.categories);
+                setFetching(false);
             });
         } catch (error) {
             console.log(error.message);
@@ -30,21 +33,25 @@ const SearchResults = () => {
 
     useEffect( ()=>{          
             getProducts();
-    },[location]); 
-    
-    return (
-        <main className="main">
-            <Container>
-                { categories && <Breadcrumb category={categories} /> }
-        
-                <section>
-                    <ul className="search-results-list">
-                        { products && products.map(product => <Product key={product.id} {...product} />) }
-                    </ul>
-                </section>
-            </Container>
-        </main>
-    )
+    },[location]);
+
+    if (fetching) {
+        return <Loader />;
+    } else {
+        return (
+            <main className="main">
+                <Container>
+                    { categories && <Breadcrumb category={categories} /> }
+            
+                    <section>
+                        <ul className="search-results-list">
+                            { products && products.map(product => <Product key={product.id} {...product} />) }
+                        </ul>
+                    </section>
+                </Container>
+            </main>
+        )
+    }
 };
 
 export default SearchResults;

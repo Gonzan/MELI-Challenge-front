@@ -1,6 +1,7 @@
 import React,{useEffect,useState} from 'react';
 import { useParams } from 'react-router-dom';
 import Container from '../../Components/Container/Container';
+import Loader from '../../Components/Loader/Loader';
 import './ProductDetail.scss';
 
 const ProductDetail = () => {
@@ -27,7 +28,7 @@ const ProductDetail = () => {
         },[]);
 
         if (fetching) {
-            return "Buscando";
+            return <Loader />;
         } else {
             return (
                 <main className="main">
