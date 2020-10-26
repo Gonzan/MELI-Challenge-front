@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import {useLocation} from 'react-router-dom';
-import Product from '../Components/Product/Product'; 
-import Bredcrumb from '../Components/Bredcrumb/Bredcrumb';
+import Product from '../../Components/Product/Product'; 
+import Breadcrumb from '../../Components/Breadcrumb/Breadcrumb';
+import Container from '../../Components/Container/Container';
 import './SearchResults.scss';
 
 const SearchResults = () => {
@@ -12,7 +13,7 @@ const SearchResults = () => {
     const [products, setProducts] = useState([]); 
     const [categories, setCategories] = useState(false); 
       
-    const getProducts =  ()=> {
+    const getProducts = () => {
         try {
             const URL_SEARCH = `http://localhost:5000/api/items?${search}`;
             
@@ -20,26 +21,30 @@ const SearchResults = () => {
             .then(res => res.json())
             .then(data => {
                 setProducts(data.items);
-                setCategories(data.categories)
-                console.log(data);
+                setCategories(data.categories);
             });
         } catch (error) {
             console.log(error.message);
         }
     }
+
     useEffect( ()=>{          
             getProducts();
-    },[location]);  
-    return(
-        <section className="search-results">
-            {categories && <Bredcrumb category={categories} />}
-            <section className="search-results__items">
-                 <ul>
-                    {products.map(product => <Product key={product.id} {...product}/>)}
-                </ul>
-            </section> 
-        </section>
+    },[location]); 
+    
+    return (
+        <main className="main">
+            <Container>
+                { categories && <Breadcrumb category={categories} /> }
+        
+                <section>
+                    <ul className="search-results-list">
+                        { products && products.map(product => <Product key={product.id} {...product} />) }
+                    </ul>
+                </section>
+            </Container>
+        </main>
     )
 };
 
-export default SearchResults
+export default SearchResults;
