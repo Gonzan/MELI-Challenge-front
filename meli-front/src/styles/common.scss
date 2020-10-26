@@ -1,0 +1,22 @@
+$white: #FFFFFF;
+$yellow: #FFE600;
+$gray: #999999;
+$grayLight: #eeeeee;
+$grayDark: #333333;
+$blue: #3483fa;
+
+body {
+  background-color: $grayLight;
+  color: $gray;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+a {
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+

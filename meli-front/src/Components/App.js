@@ -4,6 +4,7 @@ import SearchBar from './SearchBar/SearchBar';
 import SearchResults from '../pages/SearchResults/SearchResults';
 import ProductDetail from '../pages/ProductDetail/ProductDetail';
 import '../styles/common.scss';
+import './App.scss';
 
 const App = () => {
   return (
