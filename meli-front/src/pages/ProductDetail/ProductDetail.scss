@@ -1,0 +1,117 @@
+@import '../../styles/common.scss';
+
+.detail {
+    background-color: $white;
+    padding: 16px;
+}
+
+.detail-specs {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 48px;
+}
+
+.detail-container {
+    margin: 0;
+    text-align: center;
+}
+
+.detail-image {
+    width: 100%;
+}
+
+.detail-description-title {
+    font-size: 18px;
+    font-weight: normal;
+    color: $grayDark;
+}
+
+.detail-text {
+    font-size: 14px;
+    text-transform: lowercase;
+    text-align: justify;
+    margin: 16px 0;
+}
+
+.detail-specs-sold {
+    color: $grayDark;
+    font-size: 14px;
+}
+
+.detail-specs-title {
+    font-size: 18px;
+    color: $grayDark;
+    margin-top: 16px;
+}
+
+.detail-price-currency {
+    color: $grayDark;
+    font-size: 24px;
+    margin-right: 4px;
+}
+
+.detail-price {
+    color: $grayDark;
+    font-size: 24px;
+    margin: 16px 0;
+    display: inline-block;
+}
+
+.detail-main {
+    margin-top: 32px;
+}
+
+.detail-button {
+    background-color: $blue;
+    color: $white;
+    font-size: 16px;
+    border: 0;
+    padding: 16px;
+    border-radius: 4px;
+    display: block;
+    width: 100%;
+}
+
+@media (min-width: 922px) {
+    .detail {
+        padding: 32px;
+    }
+
+    .detail-container {
+        width: 50%;
+    }
+    
+    .detail-main {
+        width: 40%;
+    }
+
+    .detail-specs {
+        display: flex;
+        justify-content: space-around;
+        flex-direction: row;
+        margin-bottom: 90px;
+    }
+
+    .detail-specs-title {
+        font-size: 24px;
+    }
+
+    .detail-price-currency {
+        font-size: 46px;
+    }
+    
+    .detail-price {
+        font-size: 46px;
+        margin: 32px 0;
+    }
+    
+    .detail-description-title {
+        font-size: 28px;
+    }
+
+    .detail-text {
+        text-align: left;
+        font-size: 16px;
+        margin: 32px 0;
+    }
+}
