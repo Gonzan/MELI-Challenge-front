@@ -1,5 +1,21 @@
+@import '../styles/common.scss';
+
 * {
     box-sizing: border-box;
     margin: 0;
 }
-  
+
+body {
+    background-color: $grayLight;
+    color: $gray;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+a {
+    text-decoration: none;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
