@@ -1,0 +1,76 @@
+// Common styles
+@import '../../styles/common';
+
+.header {
+    background-color: $yellow;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .container {
+        display: flex;
+        align-items: center;
+        width: 100%;
+    }
+}
+
+.header-logo {
+    margin-right: 12px;
+    background-image: url('../../assets/logo-meli.png');
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 50px;
+    height: 50px;
+
+    // Retina
+    @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+        background-image: url('../../assets/logo-meli@2x.png');
+    }
+}
+
+.form {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.form-input {
+    flex-grow: 1;
+    font-size: 16px;
+    border-radius: 4px 0 0 4px;
+    border: none;
+    padding: 0 12px;
+
+    &::placeholder { 
+        font-size: 16px;
+        color: $gray;
+    }
+
+    &:focus {
+        outline: 0;
+    }
+}
+
+.form-button {
+    all: unset;
+    background-color: $grayLight;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 0 4px 4px 0;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    background-image: url('../../assets/icon-search.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 20px;
+
+    // Retina
+    @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+        background-image: url('../../assets/icon-search@2x.png');
+    }
+}
+
