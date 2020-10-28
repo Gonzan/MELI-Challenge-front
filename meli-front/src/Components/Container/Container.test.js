@@ -8,7 +8,7 @@ test('Debe contener un <div>', () => {
   expect(container.querySelector('div')).toBeInTheDocument();
 });
 
-test('Debe tener la clase container', () => {
+test('Debe contener un <div> con la clase ', () => {
   const {container} = render(<Container />);
   expect(container.querySelector('.container')).toBeInTheDocument();
 });
