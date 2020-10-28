@@ -22,3 +22,5 @@
 ## Correr los tests
 
 ### `npm test`
+
+**Para realizar los tests se utilizó la siguiente documentación [React Testing Library](https://testing-library.com/docs/react-testing-library/intro)**
