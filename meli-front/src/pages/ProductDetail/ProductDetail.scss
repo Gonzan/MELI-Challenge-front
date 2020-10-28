@@ -29,7 +29,6 @@
 .detail-text {
     font-size: 14px;
     text-transform: lowercase;
-    text-align: justify;
     margin: 16px 0;
 }
 
@@ -110,8 +109,8 @@
     }
 
     .detail-text {
-        text-align: left;
         font-size: 16px;
         margin: 32px 0;
+        word-wrap: break-word;
     }
 }

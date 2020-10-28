@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import {useLocation} from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import Product from '../../Components/Product/Product'; 
 import Breadcrumb from '../../Components/Breadcrumb/Breadcrumb';
 import Container from '../../Components/Container/Container';
 import Loader from '../../Components/Loader/Loader';
+import Error from '../../pages/Error/Error';
 import './SearchResults.scss';
 
 const SearchResults = () => {
@@ -12,46 +13,64 @@ const SearchResults = () => {
     const search = query();
 
     const [products, setProducts] = useState([]);
+    const [categories, setCategories] = useState(false);
     const [fetching, setFetching] = useState(true);
-    const [categories, setCategories] = useState(false); 
-      
-    const getProducts = () => {
+    const [error, setError] = useState({
+        status: false,
+        message: ''
+    });
+    
+    const getProducts = async () => {
+        const URL_SEARCH = `http://localhost:5000/api/items?${search}`;
+        
         try {
-            const URL_SEARCH = `http://localhost:5000/api/items?${search}`;
-            
-            fetch(URL_SEARCH)
-            .then(res => res.json())
-            .then(data => {
-                setProducts(data.items);
-                setCategories(data.categories);
-                setFetching(false);
-            });
+            setError(false);
+            setFetching(true);
+            const fetchProducts = await fetch(URL_SEARCH);
+            const response = await fetchProducts.json();
+
+            if (response.items !== null) {
+                setProducts(response.items);
+                setCategories(response.categories);
+            } else {
+                setError({
+                    status: true,
+                    message: 'No encontramos lo que buscás :('
+                })
+            }
         } catch (error) {
-            console.log(error.message);
+            setError({
+                status: true,
+                message: 'Ocurrió un error inesperado.',
+            });
         }
+
+        setFetching(false);
     }
 
-    useEffect( ()=>{          
+    useEffect(() => {
             getProducts();
     },[location]);
 
-    if (fetching) {
-        return <Loader />;
-    } else {
         return (
-            <main className="main">
-                <Container>
-                    { categories && <Breadcrumb category={categories} /> }
-            
-                    <section>
-                        <ul className="search-results-list">
-                            { products && products.map(product => <Product key={product.id} {...product} />) }
-                        </ul>
-                    </section>
-                </Container>
-            </main>
+            <>
+                { error && <Error message={error.message} /> }
+                { fetching && <Loader /> }
+                { products &&
+                    <main className="main">
+                        <Container>
+                            { categories && <Breadcrumb category={categories} /> }
+                    
+                            <section>
+                                <ul className="search-results-list">
+                                    { products && products.map(product => <Product key={product.id} {...product} />) }
+                                </ul>
+                            </section>
+                        </Container>
+                    </main>
+                }
+            </>
         )
-    }
 };
 
 export default SearchResults;
