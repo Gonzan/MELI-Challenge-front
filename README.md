@@ -14,6 +14,7 @@
 
 ## Cómo iniciar la aplicación
 
+### `cd meli-front`
 ### `npm start`
 
 **Monta la aplicación en el puerto [http://localhost:3000](http://localhost:3000)**
