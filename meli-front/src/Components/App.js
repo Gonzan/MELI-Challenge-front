@@ -12,13 +12,16 @@ const App = () => {
     <div className="app">
       <BrowserRouter>
         <SearchBar />
+
         <Switch>
           <Route path="/items">   
             <SearchResults />
           </Route>
+
           <Route path="/details/:id">
             <ProductDetail />
           </Route>
+
           <Route path="/">   
             <Home />
           </Route>
