@@ -5,10 +5,16 @@ import Error from '../../pages/Error/Error';
 import Loader from '../../Components/Loader/Loader';
 import './ProductDetail.scss';
 
+/*
+ * Página de detalle del producto
+ */
 const ProductDetail = () => {
+    // Se crean estados para guardar la información del producto, saber si se esperan resultados o si hay errores
     const [product, setProduct] = useState();
     const [fetching, setFetching] = useState(true);
     const [error, setError] = useState(false);
+
+    // Se utiliza el hook useParams de react router para capturar el ID del URL
     const params = useParams();
 
     const getProduct = async () => {
@@ -29,9 +35,10 @@ const ProductDetail = () => {
         setFetching(false);
     }
 
+    // Se utiliza el hook de useEffect para hacer un llamado a la API
     useEffect(() => {
         getProduct()
-    }, []);
+    },[]);
 
     return (
         <main className="main">

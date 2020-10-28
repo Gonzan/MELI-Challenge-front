@@ -7,11 +7,16 @@ import Loader from '../../Components/Loader/Loader';
 import Error from '../../pages/Error/Error';
 import './SearchResults.scss';
 
+/*
+ * Página resultados de búsqueda 
+ */
 const SearchResults = () => {
+    // Se utiliza el hook useLocation para capturar el query string de la url
     const location = useLocation();
     const query = () => new URLSearchParams(location.search);
     const search = query();
 
+    // Se generan estados para guardar el resultado, las categorías, los errores y el estado del loading
     const [products, setProducts] = useState([]);
     const [categories, setCategories] = useState(false);
     const [fetching, setFetching] = useState(true);
@@ -29,6 +34,7 @@ const SearchResults = () => {
             const fetchProducts = await fetch(URL_SEARCH);
             const response = await fetchProducts.json();
 
+            // Si el array de categorías no viene vacío, se guardan los productos en el estado y se crean las categorías
             if (response.items !== null) {
                 setProducts(response.items);
                 setCategories(response.categories);
@@ -48,8 +54,9 @@ const SearchResults = () => {
         setFetching(false);
     }
 
+    // Se utiliza el hook useEffect para hacer el llamado a la API dependiendo de la query string
     useEffect(() => {
-            getProducts();
+        getProducts();
     },[location]);
 
         return (

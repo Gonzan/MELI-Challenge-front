@@ -4,6 +4,9 @@ import { Link } from 'react-router-dom';
 import Container from '../Container/Container';
 import './SearchBar.scss'
 
+/*
+ * Barra de búsqueda de productos
+ */
 const SearchBar = () => {  
   const [data, setData] = React.useState({ search: '' });
 
@@ -15,6 +18,7 @@ const SearchBar = () => {
       search: e.target.search.value
     });
     
+    // Utilizando el hook useHistory modifico la url para que matchee con la ruta de react router y traer el componente resultados de búsqueda
     history.push({
       pathname: '/items',
       search: `?search=${e.target.search.value}`

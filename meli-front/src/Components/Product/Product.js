@@ -1,7 +1,16 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import './Product.scss';
 
+/**
+ * Ítem de resultado de búsqueda
+ * @param {String} id - identificador del ítem
+ * @param {Object} price - precio del ìtem
+ * @param {String} title - título del ítem
+ * @param {String} picture - url de la imagen del ítem
+ * @param {String} condition - condición del ítem (usado o nuevo)
+ */
 const Product = ({ id, price, title, picture, condition }) => (
     <li className="product">
         <Link to={`/details/${id}`} className="product-link">
@@ -22,5 +31,20 @@ const Product = ({ id, price, title, picture, condition }) => (
         </Link>
     </li>
 )
+
+Product.propTypes = {
+    id: PropTypes.string.isRequired,
+    price: PropTypes.object,
+    title: PropTypes.string,
+    picture: PropTypes.string,
+    condition: PropTypes.string,
+};
+
+Product.defaultProps = {
+    price: {},
+    title: '',
+    picture: '',
+    condition: '',
+};
 
 export default Product;
