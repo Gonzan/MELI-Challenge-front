@@ -1,4 +1,4 @@
-import React  from 'react';
+import React, { useEffect }  from 'react';
 import { useHistory } from "react-router-dom";
 import { Link } from 'react-router-dom';
 import Container from '../Container/Container';
@@ -18,12 +18,17 @@ const SearchBar = () => {
       search: e.target.search.value
     });
     
-    // Utilizando el hook useHistory modifico la url para que matchee con la ruta de react router y traer el componente resultados de búsqueda
-    history.push({
-      pathname: '/items',
-      search: `?search=${e.target.search.value}`
-    });
+
   }
+  useEffect(()=>{
+    if (data.search !== '' ) {
+      // Utilizando el hook useHistory modifico la url para que matchee con la ruta de react router y traer el componente resultados de búsqueda
+      history.push({
+        pathname: '/items',
+        search: `?search=${data.search}`
+      });
+    }
+  },[data])
 
   return (
     <header className="header">
