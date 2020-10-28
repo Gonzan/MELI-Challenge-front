@@ -17,6 +17,23 @@ const ProductDetail = () => {
     // Se utiliza el hook useParams de react router para capturar el ID del URL
     const params = useParams();
 
+    /**
+     * Almacena en el localStorage los últimos 5 productos únicos
+     * @param {Object} item - ítem de detalle 
+     */
+    const sendToStorage = (item) => {
+        const initialItem = localStorage.getItem('lastItems');
+        const parsedInitialItem = JSON.parse(initialItem) || [];
+
+        // Almacena en el localStorage sólo si el ID del producto no está en el mismo
+        const lastItems = parsedInitialItem.find(storageItem => storageItem.id === item.id) ? parsedInitialItem : [item, ...parsedInitialItem];
+
+        // Formatea el array en 5 posiciones máximo
+        if (lastItems.length >= 5) lastItems.length = 5;
+
+        localStorage.setItem('lastItems', JSON.stringify(lastItems));
+    }
+
     const getProduct = async () => {
         
         const URL_PRODUCT = `http://localhost:5000/api/items/${params.id}`
@@ -27,7 +44,7 @@ const ProductDetail = () => {
             const product = await fetch(URL_PRODUCT);
             const response = await product.json();
             setProduct(response.item);
-        
+            sendToStorage(response.item);
         } catch (error) {
             setError(true);
         }
